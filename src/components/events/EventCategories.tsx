@@ -83,16 +83,28 @@ export default function EventCategories() {
                 </Card>
               </motion.div>
 
-              {/* Expanded list of events for this category (horizontal) */}
+              {/* Expanded list of events for this category (vertical accordion) */}
               {isOpen && (
-                <div className="mt-4">
+                <motion.div 
+                  className="mt-4 space-y-3"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
                   {catEvents.length === 0 ? (
                     <div className="text-sm text-muted-foreground">No events available yet.</div>
                   ) : (
-                    <div className="flex gap-4 overflow-x-auto py-2 px-1 hide-scrollbar">
+                    <>
                       {catEvents.map((ev, i) => (
-                        <div key={ev.id} className="min-w-[320px] flex-shrink-0" onClick={(e) => e.stopPropagation()}>
-                          <Card className="h-full flex flex-col justify-between p-4 border-border/30">
+                        <motion.div 
+                          key={ev.id} 
+                          onClick={(e) => e.stopPropagation()}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                        >
+                          <Card className="w-full flex flex-col justify-between p-4 border-border/30 hover:border-primary/50 transition-colors">
                             <div>
                               <div className="flex items-center justify-between mb-2">
                                 <div className="text-sm font-mono text-primary bg-primary/10 px-2 py-1 rounded">{ev.code}</div>
@@ -106,11 +118,11 @@ export default function EventCategories() {
                               <Button size="sm" onClick={() => navigate(`/register/${cat.slug}`)}>Register Now</Button>
                             </div>
                           </Card>
-                        </div>
+                        </motion.div>
                       ))}
-                    </div>
+                    </>
                   )}
-                </div>
+                </motion.div>
               )}
             </div>
           );

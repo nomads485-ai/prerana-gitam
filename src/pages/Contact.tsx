@@ -81,14 +81,6 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-
-              <div className="mt-8 pt-8 border-t border-border">
-                 <img 
-                   src="https://harmless-tapir-303.convex.cloud/api/storage/492704e6-6a67-40db-b208-fb95bae91c34" 
-                   alt="Contact Support" 
-                   className="w-full max-w-[200px] mx-auto object-contain"
-                 />
-              </div>
             </div>
           </div>
 
